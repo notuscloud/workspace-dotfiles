@@ -69,6 +69,6 @@ ln -s dotfiles/.config
 log "Moving back to this script folder"
 cd -
 
-# Install nvim plugins
-log "Forcing a nvim plugin install"
-nvim +PluginInstall +qall
+# Install nvim pluging
+echo "You might need to forcing a nvim plugin install..."
+echo "Run: nvim +PluginInstall +qall"
