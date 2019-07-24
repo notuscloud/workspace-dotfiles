@@ -55,8 +55,8 @@ log "Installing symlink for .zshrc"
 if [[ -e .zshrc ]]; then
   log "An existing zshrc has been detected, replacing..."
   rm -rf .zshrc
-  ln -s ./dotfiles/.zshrc ~/.zshrc
 fi
+ln -s ./dotfiles/.zshrc ~/.zshrc
 
 log "Deploying .config folder"
 if [[ -e .config ]]; then
