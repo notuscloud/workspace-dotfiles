@@ -9,6 +9,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" themes
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'albertorestifo/github.vim'
+
 " Languages
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
@@ -28,10 +32,6 @@ Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'hashivim/vim-terraform'
 Plugin 'juliosueiras/vim-terraform-completion'
 
-" themes
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'albertorestifo/github.vim'
-
 " Highlight indent
 Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -43,11 +43,6 @@ Plugin 'lambdalisue/vim-gista'
 
 " Autocomplete
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'zchee/deoplete-go'
-Plugin 'mitsuse/autocomplete-swift'
-Plugin 'sebastianmarkow/deoplete-rust'
-Plugin 'villainy/deoplete-dart'
 
 " NerdTree explorer
 Plugin 'scrooloose/nerdtree'
@@ -235,11 +230,6 @@ let g:acp_enableAtStartup = 0
 
 set timeoutlen=400 ttimeoutlen=0
 
-" Deoplete
-"
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni_patterns = {}
-
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -413,8 +403,8 @@ let g:python_host_prog  = '/usr/local/bin/python2'
 let g:python3_host_skip_check = 0
 
 " Run deoplete.nvim automatically
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class    = ['package', 'func', 'type', 'var', 'const']
+" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" let g:deoplete#sources#go#sort_class    = ['package', 'func', 'type', 'var', 'const']
 
 " Javascript
 let g:syntastic_javascript_checkers = ['eslint', 'jshint']
@@ -435,8 +425,6 @@ let g:gista#client#default_username = 'nc'
 
 " Terraform
 let g:syntastic_terraform_tffilter_plan = 1
-let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:terraform_completion_keys = 0
 let g:terraform_registry_module_completion = 0
 let g:terraform_fmt_on_save = 1
@@ -452,5 +440,3 @@ au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 hi Comment ctermfg=Grey
-
-call deoplete#initialize()

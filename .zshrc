@@ -5,10 +5,10 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="bullet-train"
 BULLETTRAIN_DIR_EXTENDED=1
 BULLETTRAIN_PROMPT_ORDER=(
-  git
+  time
   context
   dir
-  time
+  git
 )
 
 # Plugins
