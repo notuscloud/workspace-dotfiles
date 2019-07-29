@@ -12,7 +12,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 
 # Plugins
-plugins=(git)
+plugins=(git docker)
 
 # Source oh-my-zsh script
 source $ZSH/oh-my-zsh.sh
