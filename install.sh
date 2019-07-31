@@ -14,8 +14,10 @@ function log {
 # Themes
 # bullet-train (latest)
 log "Installing bullet-train"
-[[ -f ~/.oh-my-zsh/themes/bullet-train.zsh-theme ]] && curl https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
-  --output ~/.oh-my-zsh/themes/bullet-train.zsh-theme
+if [[ ! -d ~/.oh-my-zsh/themes/bullet-train.zsh-theme ]]; then
+  curl https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
+       --output ~/.oh-my-zsh/themes/bullet-train.zsh-theme
+fi
 
 # ------------
 # tmux
