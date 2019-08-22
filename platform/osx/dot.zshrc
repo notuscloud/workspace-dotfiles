@@ -12,7 +12,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 
 # Plugins
-plugins=(git docker)
+plugins=(git docker kubectl)
 
 # Source oh-my-zsh script
 source $ZSH/oh-my-zsh.sh

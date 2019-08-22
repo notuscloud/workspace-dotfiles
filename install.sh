@@ -1,20 +1,51 @@
 #!/bin/bash
 
+OHMYZSH_PATH=~/.oh-my-zsh
+OHMYZSH_VERSION=v0.0.1
+OHMYZSH_REPO=astraios/oh-my-zsh
+
+# Silence pushd and popd
+pushd () {
+    command pushd "$@" > /dev/null
+}
+popd () {
+    command popd "$@" > /dev/null
+}
+
+# Log function
 function log {
     echo "[$(date +"%Y-%m-%d %T,%S")]: $*"
 }
 
-# Will install tmux and Oh-my-zsh requirements
+function detect_os {
 
+    # if linux, $OSTYPE should be linux-gnu
+    if [[ $OSTYPE == "darwin"* ]]; then
+      OS="osx"
+    else
+      return 1
+    fi
+
+    echo $OS
+}
+# Will install tmux and Oh-my-zsh requirements
 
 # ------------
 # Oh-my-zsh
 # ------------
 
+# Detect env osx | linux-gnu | docker
+OS=$(detect_os)
+if [[ $OS == 1 ]]; then
+  exit 1
+fi
+
+log "Detected OS: $OS"
+
 # Themes
 # bullet-train (latest)
 log "Installing bullet-train"
-if [[ ! -d ~/.oh-my-zsh/themes/bullet-train.zsh-theme ]]; then
+if [[ ! -d ~/.oh-my-zsh/themes/bullet-train.zsh-theme && ${CONFIG_FOLDER} != "docker" ]]; then
   curl https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
        --output ~/.oh-my-zsh/themes/bullet-train.zsh-theme
 fi
@@ -30,46 +61,26 @@ log "Installing tmux plugin manager"
 # ------------
 # final settings
 # ------------
-if [[ $OSTYPE == "darwin"* ]]; then
-  log "OSTYPE: mac detected"
-  CONFIG_FOLDER="osx"
-elif [[ $OSTYPE == "linux-gnu" ]]; then
-  log "OSTYPE: linux detected"
-  CONFIG_FOLDER="linux"
-else
-  log "Unsupported platform... exiting"
-  exit 1
-fi
-
 log "Switch back to home dir"
-cd ~
+pushd ~ || exit 1
 
 # @TODO Add a backup of dotfiles function
 
-log "Installing symlink for ${CONFIG_FOLDER}/tmux.conf"
-if [[ -e .tmux.conf ]]; then
-  log "An existing tmux.conf has been detected, replacing..."
-  rm -rf .tmux.conf
-fi
-ln -s ./dotfiles/${CONFIG_FOLDER}/tmux.conf ~/.tmux.conf
+log "Installing symlink for ${OS}/tmux.conf"
+rm -rf .tmux.conf
+ln -s ./dotfiles/platform/${OS}/dot.tmux.conf ~/.tmux.conf
 
 log "Installing symlink for .zshrc"
-if [[ -e .zshrc ]]; then
-  log "An existing zshrc has been detected, replacing..."
-  rm -rf .zshrc
-fi
-ln -s ./dotfiles/.zshrc ~/.zshrc
+rm -rf .zshrc
+ln -s ./dotfiles/platform/${OS}/dot.zshrc ~/.zshrc
 
 log "Deploying .config folder"
-if [[ -e .config ]]; then
-  log "An existing .config has been detected, replacing..."
-  rm -rf .config
-fi
-ln -s dotfiles/.config
+rm -rf .config
+ln -s dotfiles/.config .
 
 # Return to dotfile install dir
 log "Moving back to this script folder"
-cd -
+popd || exit 1
 
 # Install nvim pluging
 echo "You might need to forcing a nvim plugin install..."

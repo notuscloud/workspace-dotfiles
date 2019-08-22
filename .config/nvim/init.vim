@@ -4,9 +4,13 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 
+" Start vundle sequence
 call vundle#begin()
 
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" Vim fuzzy file, allow to open other file and do search
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " themes
@@ -19,14 +23,12 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
-Plugin 'keith/swift.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'jparise/vim-graphql'
-Plugin 'rust-lang/rust.vim'
-Plugin 'hashicorp/sentinel.vim'
 Plugin 'dart-lang/dart-vim-plugin'
-"Plugin 'erikzaadi/vim-ansible-yaml'
+Plugin 'erikzaadi/vim-ansible-yaml'
+Plugin 'elzr/vim-json'
 
 " Terraform
 Plugin 'hashivim/vim-terraform'
@@ -78,9 +80,14 @@ Plugin 'itspriddle/vim-marked'
 
 " Utility
 Plugin 'vim-scripts/SyntaxAttr.vim'
+Plugin 'terryma/vim-smooth-scroll'
+Plugin 'justinmk/vim-sneak'
+Plugin 'Chiel92/vim-autoformat'
 
-call vundle#end() " required
+" Ending vundle sequence
+call vundle#end()
 
+filetype plugin on
 filetype plugin indent on
 
 set nobackup
@@ -120,17 +127,45 @@ set sw=2
 set ts=2
 set softtabstop=2
 set expandtab
+set smartindent
 set number
 set clipboard=unnamed
+set modelines=0
+set shiftwidth=2
+set clipboard=unnamed
+set synmaxcol=500
+set encoding=utf-8
+set tabstop=2
+set nowrap
+set number
+set nowritebackup
+set noswapfile
+set nobackup
+set hlsearch
+set ignorecase
+set smartcase
+set mouse=a
+set wildmenu
+
+" undo config
+set undodir=~/gundo
+set undofile
+set undolevels=10000
+set undoreload=10000
 
 " Make sure that coursor is always vertically centered on j/k moves
-set so=999
+" set so=999
 
 " add vertical lines on columns
 set colorcolumn=80,120
 
+"Special mac os x
+set mouse+=a
+
 syntax on
 colorscheme nord
+"set background=dark
+
 " Indent guide
 let g:indent_guides_enable_on__startup = 1
 let g:indent_guides_auto_colors        = 1
@@ -377,10 +412,15 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Remap arrow keys
-noremap <Up>    <nop>
-noremap <Down>  <nop>
-noremap <Left>  <nop>
-noremap <Right> <nop>
+map <Down> gj
+map <Up>   gk
+nnoremap j gj
+nnoremap k gk
+
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " Markdown settings
 let g:_markdown_folding_disabled = 1
