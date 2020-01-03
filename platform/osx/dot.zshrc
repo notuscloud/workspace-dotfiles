@@ -2,7 +2,9 @@
 export ZSH=~/.oh-my-zsh
 
 
-ZSH_THEME="bullet-train"
+#ZSH_THEME="bullet-train"
+ZSH_THEME="ys"
+
 BULLETTRAIN_DIR_EXTENDED=1
 BULLETTRAIN_PROMPT_ORDER=(
   time
@@ -11,8 +13,11 @@ BULLETTRAIN_PROMPT_ORDER=(
   git
 )
 
+# FZF
+# Install fzf: brew install fzf
+
 # Plugins
-plugins=(git docker kubectl)
+plugins=(git docker kubectl vault fzf)
 
 # Source oh-my-zsh script
 source $ZSH/oh-my-zsh.sh
