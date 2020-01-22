@@ -19,10 +19,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 #   git
 # )
 # BULLETTRAIN_CONTEXT_DEFAULT_USER=$(whoami)
-
-
-# FZF
-# Install fzf: brew install fzf
+# DEFAULT_USER=${BULLETTRAIN_CONTEXT_DEFAULT_USER}
 
 # Plugins
 plugins=(git docker kubectl vault fzf)
@@ -30,12 +27,10 @@ plugins=(git docker kubectl vault fzf)
 # Source oh-my-zsh script
 source $ZSH/oh-my-zsh.sh
 
-DEFAULT_USER=${BULLETTRAIN_CONTEXT_DEFAULT_USER}
-
 # Export
 export TERM="xterm-256color"
-export CLICOLOR=1
-export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+# export CLICOLOR=1
+# export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 export PATH="$HOME/.tmux:$PATH" # Add Tmux
 
 # Aliases
