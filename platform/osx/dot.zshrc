@@ -22,7 +22,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 # DEFAULT_USER=${BULLETTRAIN_CONTEXT_DEFAULT_USER}
 
 # Plugins
-plugins=(git docker kubectl vault fzf)
+plugins=(git docker kubectl vault fzf zsh-autosuggestions)
 
 # Source oh-my-zsh script
 source $ZSH/oh-my-zsh.sh
