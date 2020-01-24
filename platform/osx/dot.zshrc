@@ -33,6 +33,9 @@ export TERM="xterm-256color"
 # export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 export PATH="$HOME/.tmux:$PATH" # Add Tmux
 
+# Change fzf completion trigger
+export FZF_COMPLETION_TRIGGER='//'
+
 # Aliases
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
