@@ -36,6 +36,9 @@ export PATH="$HOME/.tmux:$PATH" # Add Tmux
 # Change fzf completion trigger
 export FZF_COMPLETION_TRIGGER='//'
 
+# Fix python "Invalid dylib load. Clients should not load the unversioned libcrypto dylib as it does not have a stable ABI."
+export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
+
 # Aliases
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
