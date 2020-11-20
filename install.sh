@@ -73,6 +73,7 @@ ln -s ./dotfiles/platform/${OS}/dot.tmux.conf ~/.tmux.conf
 log "Installing symlink for .zshrc"
 rm -rf .zshrc
 ln -s ./dotfiles/platform/${OS}/dot.zshrc ~/.zshrc
+ln -s ./dotfiles/platform/${OS}/dot.zshrc-default ~/.zshrc-default
 
 log "Deploying .config folder"
 rm -rf .config
